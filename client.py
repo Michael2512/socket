@@ -1,15 +1,5 @@
 #!/usr/bin/env python3
 
-
-input_string = 'Hello'
-print(type(input_string))
-input_bytes_encoded = input_string.encode()
-print(type(input_bytes_encoded))
-print(input_bytes_encoded)
-output_string=input_bytes_encoded.decode()
-print(type(output_string))
-print(output_string)
-
 import socket
 
 SERVER_ADDRESS = '127.0.0.1'
@@ -22,7 +12,7 @@ sock_service.connect((SERVER_ADDRESS, SERVER_PORT))
 print("Connesso a " + str((SERVER_ADDRESS, SERVER_PORT)))
 while True:
     try:
-        dati = input("Inserisci i dati da inviare (0 per terminare la connessione): ")
+        dati = input("Inserisci i dati da inviare (ko per uscire): ")
     except EOFError:
         print("\nOkay. Exit")
         break

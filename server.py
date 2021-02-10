@@ -22,20 +22,43 @@ while True:
     sock_service, addr_client = sock_listen.accept()
     print("\nConnessione ricevuta da " + str(addr_client))
     print("\nAspetto di ricevere i dati ")
-    contConn=0
+    
     while True:
+        risultato = 0
         dati = sock_service.recv(2048)
-        contConn+=1
         if not dati:
             print("Fine dati dal client. Reset")
             break
         
         dati = dati.decode()
         print("Ricevuto: '%s'" % dati)
-        if dati=='0':
-            print("Chiudo la connessione con " + str(addr_client))
+        if dati=='ko':
+            print("Fine connessione!")
             break
-        dati = "Risposta a : " + str(addr_client) + ". Il valore del contatore è : " + str(contConn)
+
+        op, n1, n2 = dati.split(";")
+
+        print(op);
+        print(n1);
+        print(n2);
+
+        if(op=='piu'):
+            risultato = float(n1) + float(n2)
+        elif(op=='meno'):
+            risultato = float(n1) - float(n2)
+        elif(op=='per'):
+            risultato = float(n1) * float(n2)
+        elif(op=='div'):
+            if(n1==0):
+                risultato = 0
+            elif(n2==0):
+                risultato = "impossibile"
+            elif(n1==0 & n2==0):
+                risultato = "indeterminato"
+            else:
+                risultato = float(n1) / float(n2)
+
+        print(risultato)
 
         dati = dati.encode()
 
