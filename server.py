@@ -42,6 +42,7 @@ while True:
         print(n1);
         print(n2);
 
+    
         if(op=='piu'):
             risultato = float(n1) + float(n2)
         elif(op=='meno'):
@@ -53,15 +54,15 @@ while True:
                 risultato = 0
             elif(n2==0):
                 risultato = "impossibile"
-            elif(n1==0 & n2==0):
+            elif(n1==0 and n2==0):
                 risultato = "indeterminato"
             else:
                 risultato = float(n1) / float(n2)
 
         print(risultato)
 
-        dati = dati.encode()
+        risultato = risultato.encode()
 
-        sock_service.send(dati)
+        sock_service.send(risultato)
 
     sock_service.close()
